@@ -1,3 +1,3 @@
 #!/usr/bin/env node
-var interactive = require('./');
+var interactive = require('./index.js');
 interactive();
