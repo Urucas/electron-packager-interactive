@@ -15,7 +15,8 @@
   },
   "preferGlobal": true,
   "bin": {
-    "electron-packager-interactive": "./cli.js"
+    "electron-packager-interactive": "./cli.js",
+    "epi": "./cli.js"
   },
   "keywords": [
     "electron",
