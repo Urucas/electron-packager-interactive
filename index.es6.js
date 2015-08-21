@@ -10,6 +10,15 @@ export default function interactive(verbose = true) {
   let default_version = "0.30.4";
   let default_sourcedir = process.cwd();
   let default_out = glue([process.cwd(), "releases"]);
+  
+  let get_package_name = () => {
+    try {
+      var pkg_path = glue([process.cwd(), "package.json"]);
+      var pkg = require(pkg_path);
+      return pkg.name;
+    }catch(e){}
+    return "";
+  }
 
   let settings = {
     sourcedir: default_sourcedir,
@@ -89,7 +98,8 @@ export default function interactive(verbose = true) {
     let appname_prompt = {
       type : 'input', 
       name : "appname",
-      message: "Select Application name:"
+      message: "Select Application name:",
+      default: get_package_name()
     }
     inquirer.prompt(appname_prompt, (response) => {
       var appname = response.appname.trim();
