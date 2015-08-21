@@ -197,7 +197,17 @@ export default function interactive(verbose = true) {
   }
   
   let run_electron_packager = (settings) => {
-    console.log(settings);
+    log.log("Electron packager settings");
+    log.log(settings);
+    
+    packager(settings, (err, appPath) => {
+      if(err) {
+        error(err);
+        return;
+      }
+      log.ok("Application packaged successfuly!")
+      log.log(appPath);
+    });
   }
 
   ask_appname( (appname) => {
