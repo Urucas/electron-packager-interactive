@@ -22,7 +22,7 @@ export default function interactive(verbose = true) {
   }
 
   let settings = {
-    src: default_src,
+    dir: default_src,
     name: null, 
     platform: "all",
     arch: "all",
@@ -223,7 +223,7 @@ export default function interactive(verbose = true) {
   ask_appname( (appname) => {
     settings.name = appname;
   ask_sourcedir( (src) => {
-    settings.src = src;
+    settings.dir = src;
   ask_platform( (platforms) => {
     settings.platforms = platforms;
   ask_arch( (arch) => {
