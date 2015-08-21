@@ -240,8 +240,8 @@ export default function interactive(verbose = true) {
   ask_app_version( (app_version) => {
     settings["app-version"] = app_version;
 
-    run_electron_packager(settings);
+  run_electron_packager(settings);
   
-  })})})})})})})})})});
+  })})})})})})})})})}); // <- this is ugly
 
 }
