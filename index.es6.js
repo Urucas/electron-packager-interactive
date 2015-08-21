@@ -8,7 +8,7 @@ export default function interactive(verbose = true) {
   let log = semafor();
 
   let default_version = "0.30.4";
-  let default_sourcedir = process.cwd();
+  let default_src = process.cwd();
   let default_out = glue([process.cwd(), "releases"]);
   
   let get_package_name = () => {
@@ -21,7 +21,7 @@ export default function interactive(verbose = true) {
   }
 
   let settings = {
-    sourcedir: default_sourcedir,
+    src: default_src,
     appname: null, 
     platform: "all",
     arch: "all",
@@ -67,12 +67,12 @@ export default function interactive(verbose = true) {
       type : 'input', 
       name : "sourcedir",
       message: "Select Electron app source directory:",
-      default: default_sourcedir
+      default: default_src
     }
     inquirer.prompt(sourcedir_prompt, (response) => {
       var sourcedir = response.sourcedir.trim();
       if(sourcedir == "") {
-        sourcedir = default_sourcedir;
+        sourcedir = default_src;
       }
       cb(sourcedir);
     });
@@ -221,8 +221,8 @@ export default function interactive(verbose = true) {
 
   ask_appname( (appname) => {
     settings.appname = appname;
-  ask_sourcedir( (sourcedir) => {
-    settings.sourcedir = sourcedir;
+  ask_sourcedir( (src) => {
+    settings.src = src;
   ask_platform( (platforms) => {
     settings.platforms = platforms;
   ask_arch( (arch) => {
