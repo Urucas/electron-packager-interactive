@@ -4,6 +4,8 @@
   "description": "An interactive implementation of electron-packager",
   "main": "cli.js",
   "scripts": {
+    "build" : "grunt build",
+    "start" : "./cli.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
