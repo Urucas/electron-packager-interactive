@@ -2,6 +2,7 @@ import inquirer from 'inquirer'
 import semafor from 'semafor'
 import glue from 'glue-path'
 import packager from 'electron-packager'
+import colors from 'colors'
 
 export default function interactive(verbose = true) {
   
@@ -206,7 +207,7 @@ export default function interactive(verbose = true) {
   }
   
   let run_electron_packager = (settings) => {
-    log.log("Electron packager settings");
+    log.log("Electron packager settings:".white);
     log.log(settings);
     
     packager(settings, (err, appPath) => {
