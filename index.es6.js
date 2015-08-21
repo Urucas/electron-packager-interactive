@@ -1,7 +1,6 @@
 import inquirer from 'inquirer'
 import semafor from 'semafor'
 import glue from 'glue-path'
-import child_process from 'child_process'
 import packager from 'electron-packager'
 
 export default function interactive(verbose = true) {
