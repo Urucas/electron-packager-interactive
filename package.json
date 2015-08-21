@@ -4,13 +4,18 @@
   "description": "An interactive implementation of electron-packager",
   "main": "cli.js",
   "scripts": {
-    "build" : "grunt build",
-    "start" : "./cli.js",
+    "build": "grunt build",
+    "prestart": "npm run build",
+    "start": "./cli.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Urucas/electron-packager-interactive.git"
+  },
+  "preferGlobal": true,
+  "bin": {
+    "electron-packager-interactive": "./cli.js"
   },
   "keywords": [
     "electron",
@@ -26,8 +31,11 @@
   },
   "homepage": "https://github.com/Urucas/electron-packager-interactive#readme",
   "dependencies": {
+    "colors": "^1.1.2",
     "electron-packager": "^5.0.2",
-    "inquirer": "^0.9.0"
+    "glue-path": "0.0.4",
+    "inquirer": "^0.9.0",
+    "semafor": "0.0.1"
   },
   "devDependencies": {
     "babel": "^5.8.21",
