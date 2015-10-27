@@ -84,6 +84,11 @@ export default function interactive() {
     },
     {
       type: "input",
+      name: "icon",
+      message: "Select Electron icon file:",
+    },
+    {
+      type: "input",
       name: "version",
       message: "Select Electron version release:",
       default: settings.version
