@@ -121,7 +121,7 @@ export default function interactive() {
   })
 
   function run_electron_packager(settings) {
-    log.log("Electron packager settings:".white)
+    log.log("Electron packager settings:")
     log.log(settings)
 
     packager(settings, (err, appPath) => {
