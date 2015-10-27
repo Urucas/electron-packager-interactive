@@ -1,5 +1,5 @@
 # electron-packager-interactive
-An interactive implementation of electron-packager
+An interactive implementation of [electron-packager](https://github.com/maxogden/electron-packager)
 
 #Install
 ```bash
