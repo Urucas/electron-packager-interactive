@@ -108,6 +108,9 @@ export default function interactive() {
     options.arch = answers.arch.join(",")
     options.platform = answers.platform.join(",")
 
+    // Add output folder to ignore
+    options.ignore = answers.out
+    
     // Compile.
     run_electron_packager(options)
   })
