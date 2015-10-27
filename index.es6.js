@@ -2,6 +2,7 @@ import inquirer from "inquirer"
 import semafor from "semafor"
 import packager from "electron-packager"
 import path from "path"
+import util from "util"
 
 export default function interactive() {
   // Logging library.
@@ -10,7 +11,7 @@ export default function interactive() {
   // Get the name from the package.json file.
   function get_package_name() {
     try {
-      const pkg = require(path.join(process.cwd(), "/package.json"))
+      const pkg = require(path.join(process.cwd(), "package.json"))
       return pkg.name
     }
     catch (e) {}
@@ -24,7 +25,7 @@ export default function interactive() {
     platform: "all",
     arch: "all",
     version: "0.34.1",
-    out: path.join(process.cwd(), "/releases"),
+    out: path.join(process.cwd(), "releases"),
     "app-bundle-id": "",
     "app-version": "",
     overwrite: true,
@@ -33,7 +34,8 @@ export default function interactive() {
 
   // Log and close the process.
   function error(msg) {
-    log.fail(msg.toString().red)
+    log.log("");
+    log.fail(msg.toString())
     process.exit(1)
   }
 
@@ -100,7 +102,7 @@ export default function interactive() {
     }
   ], answers => {
     // Get the options and defaults.
-    const options = require("util")._extend(settings, answers)
+    const options = util._extend(settings, answers)
 
     // Fix two answers.
     options.arch = answers.arch.join(",")
