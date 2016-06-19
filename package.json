@@ -1,13 +1,14 @@
 {
   "name": "electron-packager-interactive",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "An interactive implementation of electron-packager",
   "main": "cli.js",
   "scripts": {
-    "build": "grunt build",
+    "build": "./node_modules/babel-cli/bin/babel.js lib -d dist",
     "prestart": "npm run build",
     "start": "./cli.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/mocha/bin/mocha tests/* --compilers js:babel-core/register -t 15s",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -32,8 +33,12 @@
   },
   "homepage": "https://github.com/Urucas/electron-packager-interactive#readme",
   "dependencies": {
+    "babel-cli": "^6.10.1",
+    "babel-core": "^6.9.1",
+    "babel-preset-es2015": "^6.9.0",
     "electron-packager": "^7.0.0",
     "inquirer": "^0.9.0",
+    "mocha": "^2.5.3",
     "semafor": "0.0.1"
   },
   "devDependencies": {

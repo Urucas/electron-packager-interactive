@@ -1,3 +1,4 @@
 #!/usr/bin/env node
-var interactive = require('./index.js')
+var path = require('path');
+var interactive = require(path.join(__dirname, 'dist', 'index.js'));
 interactive()
