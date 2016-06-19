@@ -1,7 +1,8 @@
 # Logs
 logs
 *.log
-
+.DS_Store
+.vscode
 # Runtime data
 pids
 *.pid
