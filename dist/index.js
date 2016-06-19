@@ -40,6 +40,17 @@ function interactive() {
     return "";
   }
 
+  function run_electron_packager(settings) {
+    log.log("Electron packager settings:");
+    log.log(settings);
+    (0, _electronPackager2.default)(settings, function (err, appPath) {
+      if (err) {
+        return error(err);
+      }
+      log.ok("Application packaged successfully to \"" + appPath + "\"");
+    });
+  }
+
   // Default values for answers.
   var settings = {
     dir: process.cwd(),
@@ -121,7 +132,21 @@ function interactive() {
 
     // Fix two answers.
     options.arch = answers.arch.join(",");
+    if (options.arch == "") {
+      error("Error: Must specify arch");
+    }
     options.platform = answers.platform.join(",");
+    if (options.platform == "") {
+      error("Error: Must specify platform");
+    }
+
+    // Warn user selection darwin ia32, since
+    // electron-packager will silently fail
+    // Read mode here:
+    // https://github.com/Urucas/electron-packager-interactive/issues/7
+    if ((options.arch.indexOf("darwin") || options.arch.indexOf("all")) && (options.platform.indexOf("ia32") || options.platform.indexOf("all"))) {
+      log.warn("Sorry, building for darwin ia32 is not supported by electron-packager");
+    }
 
     // Add output folder to ignore
     options.ignore = answers.out;
@@ -129,17 +154,4 @@ function interactive() {
     // Compile.
     run_electron_packager(options);
   });
-
-  function run_electron_packager(settings) {
-    log.log("Electron packager settings:");
-    log.log(settings);
-
-    (0, _electronPackager2.default)(settings, function (err, appPath) {
-      if (err) {
-        return error(err);
-      }
-
-      log.ok("Application packaged successfully to \"" + appPath + "\"");
-    });
-  }
 }
