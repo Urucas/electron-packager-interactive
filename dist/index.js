@@ -125,7 +125,7 @@ function interactive() {
     type: "checkbox",
     name: "arch",
     message: "Select architecture:",
-    choices: ["all", "ia32", "x64"]
+    choices: ["all", "ia32", "x64", "armv7l"]
   }], function (answers) {
     // Get the options and defaults.
     var options = _util2.default._extend(settings, answers);
@@ -133,19 +133,27 @@ function interactive() {
     // Fix two answers.
     options.arch = answers.arch.join(",");
     if (options.arch == "") {
-      error("Error: Must specify arch");
+      options.arch = null;
+      log.warn("No arch specified, defaulting to " + process.arch);
     }
     options.platform = answers.platform.join(",");
     if (options.platform == "") {
-      error("Error: Must specify platform");
+      options.platform = null;
+      log.warn("No platform specified, defaulting to " + process.platform);
     }
 
-    // Warn user selection darwin ia32, since
-    // electron-packager will silently fail
-    // Read mode here:
-    // https://github.com/Urucas/electron-packager-interactive/issues/7
-    if ((options.arch.indexOf("darwin") || options.arch.indexOf("all")) && (options.platform.indexOf("ia32") || options.platform.indexOf("all"))) {
-      log.warn("Sorry, building for darwin ia32 is not supported by electron-packager");
+    if (options.arch && options.platform) {
+      // Warn user selection darwin ia32, since
+      // electron-packager will silently fail
+      // Read mode here:
+      // https://github.com/Urucas/electron-packager-interactive/issues/7
+      if ((options.arch.indexOf("darwin") || options.arch.indexOf("all")) && (options.platform.indexOf("ia32") || options.platform.indexOf("all"))) {
+        log.warn("Sorry, building for darwin ia32 is not supported by Electron");
+      }
+
+      if (options.arch === 'armv7l' && options.platform !== 'linux') {
+        log.warn("Sorry, Electron only supports building Linux targets using the armv7l arch");
+      }
     }
 
     // Add output folder to ignore
