@@ -9,7 +9,7 @@
     "start": "./cli.js",
     "prepublish": "npm run build",
     "precommit": "standard",
-    "prepush": "standar"
+    "prepush": "standard"
   },
   "repository": {
     "type": "git",
@@ -47,5 +47,10 @@
     "husky": "^0.12.0",
     "mocha": "^2.5.3",
     "standard": "^8.6.0"
+  },
+  "standard": {
+    "ignore": [
+      "dist/"
+    ]
   }
 }
