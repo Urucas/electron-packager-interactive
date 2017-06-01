@@ -34,7 +34,7 @@
   },
   "homepage": "https://github.com/Urucas/electron-packager-interactive#readme",
   "dependencies": {
-    "electron-packager": "^8.0.0",
+    "electron-packager": "^8.7.0",
     "inquirer": "^0.9.0",
     "semafor": "0.0.1"
   },
